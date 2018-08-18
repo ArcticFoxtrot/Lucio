@@ -20,7 +20,8 @@ public class Player : MonoBehaviour {
 	//Cached Components
 	private Rigidbody2D playerRb;
 	private Animator playerAnimator;
-	private Collider2D playerCollider;
+	private CapsuleCollider2D playerCollider;
+	private BoxCollider2D feetCollider;
 	float gravityScaleAtStart;
 
 	//Messages then methods
@@ -28,8 +29,10 @@ public class Player : MonoBehaviour {
 	void Start () {
 		playerRb = gameObject.GetComponent<Rigidbody2D>();
 		playerAnimator = gameObject.GetComponent<Animator>();
-		playerCollider = gameObject.GetComponent<Collider2D>();
+		playerCollider = gameObject.GetComponent<CapsuleCollider2D>();
+		feetCollider = gameObject.GetComponent<BoxCollider2D>();
 		gravityScaleAtStart = playerRb.gravityScale;
+
 	}
 	
 	// Update is called once per frame
@@ -58,9 +61,9 @@ public class Player : MonoBehaviour {
 			} else if (!CrossPlatformInputManager.GetButtonDown("Jump") && playerRb.velocity.y > 0) {
 			playerRb.velocity += Vector2.up * Physics2D.gravity.y * (jumpMultiplier - 1) * Time.deltaTime; 
 			}
-		if (!playerCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
+		if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
 			return; 
-				} else if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
+				} else if (feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) {
 			if (CrossPlatformInputManager.GetButtonDown("Jump")) {
 				Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
 				playerRb.velocity += jumpVelocityToAdd;
@@ -71,7 +74,7 @@ public class Player : MonoBehaviour {
 
 	private void ClimbLadder() {
 		
-		if (!playerCollider.IsTouchingLayers(LayerMask.GetMask("Climbable"))) {
+		if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Climbable"))) {
 			playerAnimator.SetBool("isClimbing", false);
 			playerRb.gravityScale = gravityScaleAtStart;
 			return;
