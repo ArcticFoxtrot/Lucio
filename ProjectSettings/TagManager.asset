@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - isClimbable
   layers:
   - Default
   - TransparentFX
@@ -13,10 +14,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Climbable
+  - Player
+  - BackGround
   - 
   - 
   - 
@@ -43,6 +44,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 4126964717
+    locked: 0
+  - name: Climbable
+    uniqueID: 347797143
     locked: 0
   - name: Player
     uniqueID: 2376434497
