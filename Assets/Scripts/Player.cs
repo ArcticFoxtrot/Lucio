@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
 	[SerializeField] float fallMultiplier = 2.5f;
 	[SerializeField] float jumpMultiplier = 2.5f;
 	[SerializeField] float climbSpeed = 5f;
+	[SerializeField] Vector2 deathKick = new Vector2(0f, 300f);
 
 	//State
 	private bool isAlive = true;
@@ -37,10 +38,13 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Run();
-		FlipSprite();
-		Jump();
-		ClimbLadder(); 
+		if (isAlive) {
+			Run();
+			FlipSprite();
+			Jump();
+			ClimbLadder();
+			Die();
+			}
 	}
 
 	private void Run() {
@@ -96,6 +100,15 @@ public class Player : MonoBehaviour {
 			}
 			// if player moving horizontally  
 			// reverse scaling on x axis
+
+		}
+
+	private void Die() {
+		if (playerCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazard"))) {
+			isAlive = false;
+			playerAnimator.SetBool("isDead", true);
+			playerRb.AddForce(deathKick);
+			}
 
 		}
 	}
