@@ -20,7 +20,7 @@ TagManager:
   - BackGround
   - Enemy
   - Hazard
-  - 
+  - Transitions
   - 
   - 
   - 
@@ -53,6 +53,9 @@ TagManager:
     locked: 0
   - name: Hazards
     uniqueID: 3623366093
+    locked: 0
+  - name: Transitions
+    uniqueID: 886842291
     locked: 0
   - name: Player
     uniqueID: 2376434497

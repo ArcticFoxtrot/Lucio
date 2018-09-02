@@ -6,6 +6,9 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour {
 
+	//GameSession Controller
+
+	private GameSession gameSessionController;
 
 	//Config
 	[SerializeField] float runSpeed = 5f;
@@ -33,6 +36,7 @@ public class Player : MonoBehaviour {
 		playerCollider = gameObject.GetComponent<CapsuleCollider2D>();
 		feetCollider = gameObject.GetComponent<BoxCollider2D>();
 		gravityScaleAtStart = playerRb.gravityScale;
+		gameSessionController = FindObjectOfType<GameSession>();
 
 	}
 	
@@ -108,6 +112,7 @@ public class Player : MonoBehaviour {
 			isAlive = false;
 			playerAnimator.SetBool("isDead", true);
 			playerRb.AddForce(deathKick);
+			gameSessionController.ProcessPlayerDeath();
 			}
 
 		}
