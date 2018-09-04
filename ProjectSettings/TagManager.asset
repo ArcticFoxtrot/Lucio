@@ -21,7 +21,7 @@ TagManager:
   - Enemy
   - Hazard
   - Transitions
-  - 
+  - PickUps
   - 
   - 
   - 
@@ -53,6 +53,9 @@ TagManager:
     locked: 0
   - name: Hazards
     uniqueID: 3623366093
+    locked: 0
+  - name: PickUps
+    uniqueID: 78021473
     locked: 0
   - name: Transitions
     uniqueID: 886842291
